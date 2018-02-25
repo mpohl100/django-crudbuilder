@@ -126,6 +126,12 @@ def lowerword(s):  # pragma: no cover
     """
     return s[0].lower() + s[1:]
 
+def lowercase(s):
+    sss = ""
+    for c in s:
+        sss += c.lower()
+    return sss
+
 _underToMixedRE = re.compile('_.')
 
 
@@ -141,7 +147,6 @@ def underToMixed(name):
         return underToMixed(name[:-3] + "ID")
     return _underToMixedRE.sub(lambda m: m.group(0)[1].upper(),
                                name)
-
 
 def model_class_form(name):
     """
@@ -195,6 +200,13 @@ def custom_postfix_url(crud, model):
     if not postfix:
         postfix = plural(model)
     return postfix
+
+def fetch_id(content_object):
+    pattern = re.compile(r'\((\d+)\)')
+    s = ""
+    if not isinstance(content_object, str):
+        s = str(content_object)
+    return re.findall(pattern, s)[0]
 
 
 def get_urlresolver():

@@ -202,11 +202,19 @@ def custom_postfix_url(crud, model):
     return postfix
 
 def fetch_id(content_object):
+    """ expected input is 'Content object(33)'
+        The goal is to extract the id 33
+        If no figure is found we return 'create'
+        This way a hyperlink to the create page of the corresponding model is generated
+    """
     pattern = re.compile(r'\((\d+)\)')
     s = ""
     if not isinstance(content_object, str):
         s = str(content_object)
-    return re.findall(pattern, s)[0]
+    results = re.findall(pattern, s)
+    if len(results):
+        return results[0]
+    return "create"
 
 
 def get_urlresolver():

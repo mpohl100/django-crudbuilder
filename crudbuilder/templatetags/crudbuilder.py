@@ -40,6 +40,7 @@ def crud_detail(crud_key):
     app, model, postfix_url = crud_key.split('-', 2)
     print(str(app) + ' - ' + str(model) + ' - ' + str(postfix_url) )
     list_url = '{}-{}-list'.format(app, postfix_url)
+    print(list_url)
     return CrudDetail(app, model, list_url)
 
 

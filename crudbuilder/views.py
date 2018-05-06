@@ -213,7 +213,10 @@ class CrudListView(LoginRequiredMixin, TemplateView):
     login_required = False
 
     def cruds(self):
-        return registry.items()
+        lst = []
+        for k,v in registry.items():
+            lst.append((k,v))
+        return sorted(lst, key = lambda i : i[0])
 
 
 crudlist_view = CrudListView.as_view()

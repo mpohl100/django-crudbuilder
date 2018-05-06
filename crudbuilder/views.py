@@ -216,6 +216,7 @@ class CrudListView(LoginRequiredMixin, TemplateView):
         lst = []
         for k,v in registry.items():
             lst.append((k,v))
+            print(str(k) + ' -> ' + str(v))
         return sorted(lst, key = lambda i : i[0])
 
 

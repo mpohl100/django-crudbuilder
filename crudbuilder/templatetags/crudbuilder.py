@@ -31,12 +31,14 @@ def get_value(obj, field):
 
 @register.filter
 def class_name(obj):
+    print(obj.__class__.__name__)
     return obj.__class__.__name__
 
 
 @register.filter
 def crud_detail(crud_key):
     app, model, postfix_url = crud_key.split('-', 2)
+    print(str(app) + ' - ' + str(model) + ' - ' + str(postfix_url) )
     list_url = '{}-{}-list'.format(app, postfix_url)
     return CrudDetail(app, model, list_url)
 
